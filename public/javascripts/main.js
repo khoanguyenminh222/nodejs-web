@@ -928,7 +928,7 @@ $('.btndangbinhluanquanly').click(e => {
     }
 })
 
-var socket = io("https://nodejs-webapp-123.herokuapp.com")
+var socket = io("http://localhost:3000")
 
 function guiThongBao() {
     socket.emit("messageSend", {
