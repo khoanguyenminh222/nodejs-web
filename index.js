@@ -84,7 +84,7 @@ mongoose.connect('mongodb+srv://khoanguyenminh222:khoa2703@cluster0.w19mv.mongod
         useUnifiedTopology: true
     })
     .then(() => {
-        http.listen(3000, () => {
+        http.listen(process.env.PORT, () => {
             console.log('http://localhost:' + 3000)
 
             io.on('connection', function(socket) {
