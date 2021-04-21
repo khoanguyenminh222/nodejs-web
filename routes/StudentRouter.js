@@ -3,7 +3,7 @@ var fs = require('fs');
 var path = require('path');
 const multer = require('multer')
 var formidable = require('formidable');
-var moment = require('moment')
+var moment = require('moment-timezone')
 
 const Router = express.Router()
 
@@ -166,7 +166,7 @@ Router.post('/dangtin', (req, res) => {
     })
 
     moment().format('DD-MM-YYYY');
-    const today1 = moment().format('DD-MM-YYYY HH:mm:ss');
+    const today1 = moment().tz('Asia/Ho_Chi_Minh').format('DD-MM-YYYY HH:mm:ss');
 
 
     // Luu hinh anh 
@@ -496,7 +496,7 @@ Router.post('/dangbinhluan', (req, res) => {
     var form = new formidable.IncomingForm();
 
     moment().format('DD-MM-YYYY');
-    const today = moment().format('DD-MM-YYYY HH:mm:ss');
+    const today = moment().tz('Asia/Ho_Chi_Minh').format('DD-MM-YYYY HH:mm:ss');
 
     var fields = []
     form.parse(req, function(err, field, files) {
