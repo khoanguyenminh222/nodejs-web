@@ -1,0 +1,381 @@
+body {
+    background: #f1f7fc
+}
+
+#btn-gg img {
+    width: 10%;
+    font-size: 15px;
+}
+
+.login-photo {
+    padding: 80px 0;
+}
+
+.form-container {
+    display: table;
+    max-width: 900px;
+    width: 90%;
+    margin: 0 auto;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.login-photo .image-holder {
+    display: table-cell;
+    width: auto;
+    background: url(../images/TDT.jpg);
+    background-size: cover;
+}
+
+@media (max-width:991px) {
+    .login-photo form {
+        padding: 40px;
+    }
+}
+
+.login-photo form {
+    display: table-cell;
+    width: 400px;
+    background-color: #ffffff;
+    padding: 40px 60px;
+    color: #505e6c;
+}
+
+.login-photo form h2 {
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.login-photo form .form-control {
+    background: #f7f9fc;
+    border: none;
+    border-bottom: 1px solid #dfe7f1;
+    border-radius: 0;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+    text-indent: 6px;
+    height: 40px;
+}
+
+.login-photo form .form-check {
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.login-photo form .btn-primary:active {
+    transform: translateY(1px);
+}
+
+
+/****************************************************************/
+
+
+/* Trang chu */
+
+.sidebar {
+    width: 200px;
+    height: 100%;
+    /* 100% Full-height */
+    position: fixed;
+    /* Stay in place */
+    z-index: 2;
+    /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #2b2b2b;
+    /* Black*/
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 60px;
+    /* Place content 60px from the top */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidebar */
+}
+
+
+/* The sidebar links */
+
+.sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+
+/* When you mouse over the navigation links, change their color */
+
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+
+/* Position and style the close button (top right corner) */
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 36px;
+}
+
+#btn_openNav {
+    cursor: pointer;
+}
+
+
+/* The button used to open the sidebar */
+
+.openbtn {
+    font-size: 25px;
+    cursor: pointer;
+    background-color: rgb(77, 76, 76);
+    color: white;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+
+#main {
+    transition: margin-left .5s;
+    /* If you want a transition effect */
+    margin-top: 80px;
+    margin-left: 200px;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1
+}
+
+.container {
+    margin-top: 70px;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+    .sidebar {
+        padding-top: 15px;
+    }
+    .sidebar a {
+        font-size: 18px;
+    }
+}
+
+@media (max-width:700px) {
+    .hidden-xs {
+        visibility: hidden;
+    }
+    #mySidebar {
+        width: 0;
+    }
+    #main {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width:1020px) {
+    .file {
+        visibility: hidden;
+        width: 0;
+    }
+}
+
+@media screen and (max-width:450px) {
+    .fixnav {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+}
+
+.sidebar img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+
+/* Css đăng tin */
+
+.well-social-post {
+    border-radius: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 0;
+}
+
+.well-social-post .glyphicon,
+.well-social-post .fa,
+.well-social-post [class^='icon-'],
+.well-social-post [class*='icon-'] {
+    font-weight: bold;
+    color: #999999;
+}
+
+.well-social-post .list-inline {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.well-social-post .list-inline li {
+    position: relative;
+}
+
+.well-social-post .form-control {
+    width: 100%;
+    min-height: 100px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.well-social-post .list-inline {
+    padding: 10px;
+}
+
+.well-social-post .list-inline li+li {
+    margin-left: 10px;
+}
+
+.well-social-post .post-actions {
+    margin: 0;
+    background-color: #f6f7f8;
+    border-top-color: #e9eaed;
+}
+
+.avatar {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.textarea {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 0;
+}
+
+.textarea:active,
+.textarea:focus {
+    outline: 0px;
+    -webkit-appearance: none;
+    box-shadow: none
+}
+
+.selectBox {
+    position: relative;
+}
+
+.selectBox select {
+    width: 100%;
+    font-weight: bold;
+}
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+#checkboxes label {
+    display: block;
+}
+
+#checkboxes label:hover {
+    background-color: #1e90ff;
+}
+
+.anhthongtincanhan {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.img-1 {
+    text-align: center;
+    max-height: 300px;
+    height: auto;
+    overflow-x: auto;
+}
+
+.img-1 img {
+    padding: 10px;
+    height: 300px;
+    width: auto;
+    max-width: 400px;
+}
+
+.hienbaiviet {
+    width: 100%;
+}
+
+.btnDeleteImg,
+.btnDeleteVideo {
+    margin-top: 10px;
+    margin-left: 2%;
+    background-color: black;
+    color: white
+}
+
+.chinhsuahinhanh {
+    max-width: 100%;
+}
+
+.txtbinhluan {
+    width: 80%;
+    height: 200px;
+}
+
+.txttext {
+    white-space: pre-line
+}
+
+.noidungthongbao {
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+
+.hienthithongbao {
+    max-height: 600px;
+    overflow: auto;
+    position: fixed;
+    max-width: 300px;
+}
+
+.avatartrangcanhan {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.cardbaiviet {
+    display: none;
+}

@@ -1,0 +1,403 @@
+
+
+<div class="row">
+    <!-- modal xoá bình luận -->
+    <div class="modal" id="modalxoabinhluan">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div>
+                        <h4 class="modal-title">Xoá bình luận</h4>
+                    </div>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p>Bình luận với nội dung <strong class="noidungbinhluan">a</strong></p>            
+                    <p>Bình luận sau khi xoá sẽ không thể khôi phục lại.</p>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-danger chapnhanxoabinhluan">Xoá</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal xoá bài viêt -->
+    <div class="modal" id="modalxoabaiviet">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div>
+                        <h4 class="modal-title">Xoá bài viết</h4>
+                    </div>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p>Bài viết với nội dung <strong class="noidungbaiviet">a</strong></p>            
+                    <p>Bài viết sau khi xoá sẽ không thể khôi phục lại.</p>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-danger chapnhanxoabaiviet">Xoá</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal chỉnh sửa bài viết -->
+    <div class="modal" id="modalchinhsuabaiviet">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div>
+                        <h4 class="modal-title">Chỉnh sửa bài viết</h4>
+                    </div>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2">
+                                        <img class="rounded-circle avatar" src="/uploads/anhdaidien/<%=student.image%>" alt="">
+                                    </div>
+                                    <div class="ml-2 mt-3">
+                                        <div class="h6 m-0"><p><%=student.fullname%></p></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <textarea onkeyup="textAreaAdjust(this)" class="form-control textarea txtnoidung "></textarea>
+                            <input class="linkyoutube form-control" type="text" placeholder="Nhập link embed của youtube mới(nếu có)">
+                            <div class="img-1">
+                                <div class="divvideo">
+                                    <div>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <table class="rowhinhanh" id="chinhsuaanhbaiviet">
+                                    <tr >
+                                        <td > 
+                                            <button type="button" class="btn cursor-pointer btnDeleteImg">&times;</button>
+                                            <img class='chinhsuahinhanh' src="#" alt="">
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table>
+                                    <tr >
+                                        <td > 
+                                            <img id='anhmoicuabaiviet' src="#" alt="">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <label for="input_anhmoicuabaiviet" class="fa fa-image labletaianh"></label>
+                            <input type="file" name="input_anhmoicuabaiviet[]" class="d-none input_anhmoicuabaiviet" id="input_anhmoicuabaiviet" accept="image/*" onchange="document.getElementById('anhmoicuabaiviet').src = window.URL.createObjectURL(this.files[0])">
+                            <button class="btn btn-danger float-right cursor-pointer" data-dismiss="modal">Đóng</button>
+                            <button class="btn btn-success float-right cursor-pointer chapnhanchinhsuabaiviet" >Thay đổi</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    <!--  -->
+
+
+    <!-- Text đăng tin -->
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 mx-auto">
+        <div class="well well-sm well-social-post mb-3 ">
+            <form id="dangtin" name="dangtin" enctype="multipart/form-data">
+                <ul class="list-inline " id='list_PostActions'>
+                    <li class='active font-weight-bold'>Đăng tin</li>
+                </ul>
+                <input class="d-none" type="text" name="masinhvien" id="masinhvien" value="<%= student._id%>">
+                <input class="d-none" type="text" name="fullname" id="fullname" value="<%= student.fullname%>">
+                <input class="d-none" type="text" name="anhdaidien" id="anhdaidien" value="<%= student.image%>">
+                <textarea id="noidung" name="noidung" onkeyup="textAreaAdjust(this)" class="form-control textarea" placeholder="Hãy chia sẻ điều gì đó?"></textarea>
+                <input class="form-control border-top" type="text" name="urlyoutube" id="urlyoutube" placeholder="Nhập link embed youtube vào đây">
+
+                <ul class='list-inline post-actions '>
+                    
+                    <label for="hinhanh" class="fa fa-image labletaianh text-warning"></label>
+                    <input type="file" name="hinhanh" id="hinhanh" class="hinhanh file" multiple="multiple" accept="image/*">
+                    <li class='float-right d-inline'><button id="btndangtin" class='btn btn-dark btn-xs'>Đăng</button>
+                    </li>
+                    <li class="float-right d-inline pt-1">
+                        <p><i class="fa fa-globe text-warning pr-1"></i>Cộng đồng </p>
+                    </li>
+                </ul>
+            </form>
+        </div>
+
+        <!-- Hiển thị các tin -->
+        <div class="card mb-3 hienbaiviet">
+            
+        </div>
+
+        <% allbaiviet.forEach(function(baiviet){ %>
+            <% if(baiviet.manguoidung==student._id) { %>
+                
+                <div id="<%=baiviet._id%>" class="card mb-3 cardbaiviet">
+                    <div class="card-header ">
+                        <div class="d-flex justify-content-between align-items-center ">
+                            <div class="d-flex justify-content-between align-items-center ">
+                                <div class="mr-2 ">
+                                    <a href="/student/trangcanhan"><img class="rounded-circle avatar" src="/uploads/anhdaidien/<%= student.image %>" alt=" "></a>
+                                </div>
+                                <div class="ml-2 ">
+                                    <a class="text-decoration-none text-dark" href="/student/trangcanhan"><div class="h5 m-0 "><%=student.fullname%></div></a>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle " type="button" data-toggle="dropdown" >
+                                        <i  class="fa fa-ellipsis-h "></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right ">
+                                        <a class="dropdown-item btnchinhsuabaiviet" data-id="<%=baiviet._id%>" data-txtnoidung="<%=baiviet.noidung%>" data-image="<%=baiviet.hinhanh%>" data-video="<%=baiviet.video%>" data-toggle="modal" data-target="#modalchinhsuabaiviet">Chỉnh sửa </a>
+                                        <a class="dropdown-item btnxoabaiviet" data-id="<%=baiviet._id%>" data-noidung="<%=baiviet.noidung%>" data-toggle="modal" data-target="#modalxoabaiviet">Xoá</a>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="card-body ">
+                        <div class="text-muted h7 mb-2 "> <i class="fas fa-clock " aria-hidden="true "></i>Đã đăng: <%= baiviet.thoigianhienthi %></div>
+
+                        <p class="card-text txttext">
+                            <%= baiviet.noidung %>
+                        </p>
+                        <% if(baiviet.video){ %>
+                        <iframe class='iframe' width="100%" height="300" src="<%=baiviet.video%>"></iframe>
+                        <% } %>
+                        <div class='img-1'>
+                            <% baiviet.hinhanh.forEach(function(img) { %>
+                            <img src="/uploads/anhbaiviet/<%=img%>" alt="">
+                            <% }) %>
+                        </div>
+                        
+                    </div>
+                    <div class="card-footer border-bottom bg-light">
+                        <button class="btn btn-light fa fa-comment btncomment" data-manguoidung="<%=student._id%>" data-mabaiviet="<%=baiviet._id%>"> Bình luận</button>
+                        <button class="btn btn-light fa fa-comment btn_ancomment" data-manguoidung="<%=student._id%>" data-mabaiviet="<%=baiviet._id%>">Ẩn bình luận</button>
+                    </div>
+
+                    <!-- Bình luận và hiển thị bình luận-->
+                    <div class="card-body comment" id="<%=baiviet._id%>" data-mabaiviet="<%=baiviet._id%>">
+                        
+                        <% allbinhluan.forEach(function(allbinhluan){  %>
+                        <% if(allbinhluan.mabaiviet==baiviet._id) { %>
+                        <% allstudent.forEach(function(allstudent){  %>
+                        <% if(allbinhluan.manguoidung==allstudent._id) { %>
+                        <div class="user-comment mb-3" id="<%=allbinhluan._id%>">
+                            <div class="d-flex mb-2">
+                                <div class="mr-2">
+                                    <a class="text-decoration-none text-dark" href="/student/trangnguoidung/<%= allstudent._id%>"><img class="rounded-circle avatar" src="/uploads/anhdaidien/<%=allstudent.image%>" alt=" "></a>
+                                </div>
+                                <div class="ml-2 mt-1">
+                                     <p>
+                                        <a class="text-decoration-none text-dark" href="/student/trangnguoidung/<%= allstudent._id%>">
+                                            <b><%=allstudent.fullname%></b>
+                                        </a>
+                                        <span class="text-muted"><%=allbinhluan.thoigian%></span>
+                                    </p>
+                                    <p class="txttext"><%=allbinhluan.txtbinhluan%></p>
+                                    <small><a class="text-danger text-decoration-none btnxoabinhluan" data-id="<%=allbinhluan._id%>" data-noidung="<%=allbinhluan.txtbinhluan%>" data-toggle="modal" data-target="#modalxoabinhluan">Xoá</a></small>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                        <% }) %>
+                        <% allaccount.forEach(function(allaccount){  %>
+                        <% if(allbinhluan.manguoidung==allaccount._id) { %>
+                        <div class="user-comment mb-3" id="<%=allbinhluan._id%>">
+                            <div class="d-flex mb-2">
+                                <div class="mr-2">
+                                    <img class="rounded-circle avatar" src="/images/TDT.jpg" alt=" ">
+                                </div>
+                                <div class="ml-2 mt-1">
+                                     <p>
+                                        <a class="text-decoration-none text-dark" href="">
+                                            <b><%=allaccount.phong_khoa%></b>
+                                        </a>
+                                        <span class="text-muted"><%=allbinhluan.thoigian%></span>
+                                    </p>
+                                    <p class="txttext"><%=allbinhluan.txtbinhluan%></p>
+                                    <small><a class="text-danger text-decoration-none btnxoabinhluan" data-id="<%=allbinhluan._id%>" data-noidung="<%=allbinhluan.txtbinhluan%>" data-toggle="modal" data-target="#modalxoabinhluan">Xoá</a></small>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                        <% }) %>
+                        <% } %>
+                        <% }) %>
+                        <div class="user-comment mb-3 hienbinhluan<%=baiviet._id%>">
+
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="align-items-center">
+                                <img class="rounded-circle avatar" src="/uploads/anhdaidien/<%= student.image %>" alt=" ">
+                            </div>
+                            <textarea class="form-control input-login txtbinhluan" data-mabaiviet="<%=baiviet._id%>" cols="4" type="text " placeholder="Viết "></textarea>
+                            <button class='btn btn-primary btndangbinhluan btn' data-manguoidung="<%=student._id%>" data-mabaiviet="<%=baiviet._id%>">Gửi</button>
+                        </div>
+                    </div>
+                    
+                </div>
+            <% }else{ %>
+                <div class="card mb-3 cardbaiviet">
+                    <div class="card-header ">
+                        <div class="d-flex justify-content-between align-items-center ">
+                            <div class="d-flex justify-content-between align-items-center ">
+                            <% allstudent.forEach(function(allstudent){  %>
+                            <% if(allstudent._id==baiviet.manguoidung){ %>
+                                <div class="mr-2 ">
+                                    <a class="text-decoration-none text-dark" href="/student/trangnguoidung/<%= allstudent._id%>"><img class="rounded-circle avatar"src="/uploads/anhdaidien/<%= allstudent.image %>" alt=" "></a>
+                                </div>
+                                <div class="ml-2 ">
+                                    <a class="text-decoration-none text-dark" href="/student/trangnguoidung/<%= allstudent._id%>"><div class="h5 m-0 "><%=allstudent.fullname%></div></a>
+                                </div>
+                            <% } %> 
+                            <% }) %>  
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body ">
+                        <div class="text-muted h7 mb-2 "> <i class="fas fa-clock " aria-hidden="true "></i>Đã đăng: <%= baiviet.thoigianhienthi %></div>
+
+                        <p class="card-text txttext">
+                            <%= baiviet.noidung %>
+                        </p>
+                        <% if(baiviet.video){ %>
+                        <iframe class='iframe' width="100%" height="300" src="<%=baiviet.video%>"></iframe>
+                        <% } %>
+                        <div class='img-1'>
+                            <% baiviet.hinhanh.forEach(function(img) { %>
+                            <img src="/uploads/anhbaiviet/<%=img%>" alt="">
+                            <% }) %>
+                        </div>
+                    </div>
+
+                    <div class="card-footer border-bottom bg-light">
+                       <button class="btn btn-light fa fa-comment btncomment" data-manguoidung="<%=student._id%>" data-mabaiviet="<%=baiviet._id%>"> Bình luận</button>
+                        <button class="btn btn-light fa fa-comment btn_ancomment" data-manguoidung="<%=student._id%>" data-mabaiviet="<%=baiviet._id%>">Ẩn bình luận</button>
+                    </div>
+                    
+                    <!-- Bình luận và hiển thị bình luận-->
+                    <div class="card-body comment" id="<%=baiviet._id%>" data-mabaiviet="<%=baiviet._id%>">
+                        
+                        <% allbinhluan.forEach(function(allbinhluan) { %>
+                        <% if(allbinhluan.mabaiviet==baiviet._id) { %>
+                        <% allstudent.forEach(function(allstudent){  %>
+                        <% if(allbinhluan.manguoidung==allstudent._id) { %>
+                        <div class="user-comment mb-3" id="<%=allbinhluan._id%>">
+                            <div class="d-flex mb-2 ">
+                                <div class="mr-2 ">
+                                    <a class="text-decoration-none text-dark" href="/student/trangnguoidung/<%= allstudent._id%>"><img class="rounded-circle avatar" src="/uploads/anhdaidien/<%=allstudent.image%>" alt=" "></a>
+                                </div>
+                                <div class="ml-2 mt-1 ">
+                                     <p>
+                                        <a class="text-decoration-none text-dark" href="/student/trangnguoidung/<%= allstudent._id%>">
+                                            <b><%=allstudent.fullname%></b>
+                                        </a>
+                                        <span class="text-muted"><%=allbinhluan.thoigian%></span>
+                                    </p>
+                                    <% if(allbinhluan.manguoidung==student._id) { %>
+                                    <p class='txttext'><%=allbinhluan.txtbinhluan%></p>
+                                    <small><a class="text-danger text-decoration-none btnxoabinhluan" data-id="<%=allbinhluan._id%>" data-noidung="<%=allbinhluan.txtbinhluan%>" data-toggle="modal" data-target="#modalxoabinhluan">Xoá</a></small>
+                                    <% }else{ %>
+                                    <p class='txttext'><%=allbinhluan.txtbinhluan%></p>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                        <% }) %>
+                        <% allaccount.forEach(function(allaccount){  %>
+                        <% if(allbinhluan.manguoidung==allaccount._id) { %>
+                        <div class="user-comment mb-3" id="<%=allbinhluan._id%>">
+                            <div class="d-flex mb-2 ">
+                                <div class="mr-2 ">
+                                    <img class="rounded-circle avatar" src="/images/TDT.jpg" alt=" ">
+                                </div>
+                                <div class="ml-2 mt-1 ">
+                                     <p>
+                                        <a class="text-decoration-none text-dark" href="">
+                                            <b><%=allaccount.phong_khoa%></b>
+                                        </a>
+                                        <span class="text-muted"><%=allbinhluan.thoigian%></span>
+                                    </p>
+                                    <% if(allbinhluan.manguoidung==student._id) { %>
+                                    <p class='txttext'><%=allbinhluan.txtbinhluan%></p>
+                                    <small><a class="text-danger text-decoration-none btnxoabinhluan" data-id="<%=allbinhluan._id%>" data-noidung="<%=allbinhluan.txtbinhluan%>" data-toggle="modal" data-target="#modalxoabinhluan">Xoá</a></small>
+                                    <% }else{ %>
+                                    <p class='txttext'><%=allbinhluan.txtbinhluan%></p>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+                        <% }) %>
+                        <% } %>
+                        <% }) %>
+                        <div class="user-comment mb-3 hienbinhluan<%=baiviet._id%>">
+
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="align-items-center">
+                                <img class="rounded-circle avatar" src="/uploads/anhdaidien/<%= student.image %>" alt=" ">
+                            </div>
+                            <textarea class="form-control input-login txtbinhluan" data-mabaiviet="<%=baiviet._id%>" cols="4" type="text " placeholder="Viết "></textarea>
+                            <button class='btn btn-primary btndangbinhluan btn' data-manguoidung="<%=student._id%>" data-mabaiviet="<%=baiviet._id%>">Gửi</button>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% }) %> 
+        <button class='btn btn-danger mx-auto mb-5 loadmore'>Load more data</button>
+        <p class="textloadmore"></p>
+    </div>
+
+    <div class="col-md-4 col-lg-4">
+        <div class="hienthithongbao">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <p class="text-primary m-0 font-weight-bold"> <a href="/student/xemthongbao">Tất cả thông báo</a></p>
+                </div>
+                <% allthongbao.forEach(function(allthongbao){  %>
+                <a class="btn_chitietthongbao text-decoration-none text-dark"  href="/student/chitietthongbao/<%=allthongbao._id%>">
+                <div class="card-body border-bottom border-primary">
+                    <div class="form-group"><%=allthongbao.phong_khoa%></div>
+                    <div class="form-group"><small>Thuộc chuyên mục [<%=allthongbao.chuyenmuc%>]</small></div>
+                    <div class="form-group"><small><%=allthongbao.thoigian%></small></div>
+                    <div class="form-group noidungthongbao"><b><%=allthongbao.tieude%></b></div>
+                    <div class="form-group noidungthongbao"><small><%=allthongbao.noidung%></small></div>
+                </div>
+                </a>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>

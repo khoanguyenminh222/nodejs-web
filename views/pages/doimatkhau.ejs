@@ -1,0 +1,28 @@
+<div class="form-group"><button class="btn btn-success btn-sm" type="submit" id="back"><a class="text-light" href="/quanly">Quay lại</a></button></div>
+<div class="container-fluid mb-2">
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Đổi mật khẩu</p>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/quanly/doimatkhau">
+                <div class="form-group"><label for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="Nhập Username" name="username" value="<%= data.username %>" disabled/></div>
+                <div class="form-group"><label for="phong_khoa"><strong>Phòng/Khoa</strong></label><input class="form-control" type="text" id="phong_khoa"  name="phong_khoa" value="<%= data.phong_khoa %>" disabled/></div>
+                <div class="form-group"><label for="chuyenmuc"><strong>Quản lý chuyên mục</strong></label><textarea rows='10' class="form-control" type="text" id="chuyenmuc"  name="chuyenmuc" disabled><%= data.chuyenmuc %></textarea></div>
+                <div class="form-group"><label for="password"><strong>Nhập mật khẩu hiện tại</strong></label><input class="form-control" type="password" id="password"  name="password" /></div>
+                <div class="form-group"><label for="password_moi"><strong>Nhập mật khẩu mới</strong></label><input class="form-control" type="password" id="password_moi"  name="password_moi" /></div>
+
+                <% if(locals.errorMessage){ %>
+                    <div class="alert alert-danger text-center">
+                        <%= errorMessage%>
+                    </div>
+                <% }else if(locals.successMessage){ %>
+                    <div class="alert alert-success text-center">
+                        <%= successMessage%>
+                    </div>
+                <% } %>
+                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Cập nhật</button></div>
+            </form>
+        </div>
+    </div>
+</div>

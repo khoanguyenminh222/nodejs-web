@@ -1,0 +1,210 @@
+
+<div class="form-group"><button class="btn btn-success btn-sm" type="submit" id="back"><a class="text-light" href="/taotaikhoan">Quay lại</a></button></div>
+<div class="container-fluid mb-2">
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Chỉnh sửa chuyên mục</p>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/taotaikhoan/edit/<%= user._id %>">
+                <div class="form-group"><label for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="Nhập Username" name="username" value="<%= user.username %>" disabled/></div>
+                <div class="form-group"><label for="phong_khoa"><strong>Phòng/Khoa</strong></label><input class="form-control" type="text" id="phong_khoa" placeholder="Nhập Password" name="phong_khoa" value="<%= user.phong_khoa %>" disabled/></div>
+
+                <div class="form-group"><label for="chuyenmuc"><strong>Chọn chuyên mục đăng bài mới</strong></label>
+                    <div class="selectBox" onclick="showCheckboxes()">
+                    <select class="form-control">
+                        <option>Select an option</option>
+                    </select>
+                    <div class="overSelect"></div>
+                    </div>
+                    <div id="checkboxes">
+                        
+                        <% if(user.chuyenmuc.includes('Phòng Công tác học sinh sinh viên (CTHSSV)')){%>
+                            <label for="CTHSSV">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng Công tác học sinh sinh viên (CTHSSV)" id="CTHSSV" checked/> Phòng Công tác học sinh sinh viên (CTHSSV)</label>
+
+                        <% }else{ %>
+                            <label for="CTHSSV">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng Công tác học sinh sinh viên (CTHSSV)" id="CTHSSV"/> Phòng Công tác học sinh sinh viên (CTHSSV)</label>
+                        <% } %>
+                        
+                        <% if(user.chuyenmuc.includes('Phòng Đại học')){%>
+                            <label for="ĐH">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng Đại học" id="ĐH" checked/> Phòng Đại học</label>
+                        <% }else{ %>
+                            <label for="ĐH">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng Đại học" id="ĐH"/> Phòng Đại học</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Phòng Sau đại học')){%>
+                            <label for="SĐH">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng Sau đại học" id="SĐH" checked/> Phòng Sau đại học</label>
+                        <% }else{ %>    
+                            <label for="SĐH">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng Sau đại học" id="SĐH"/> Phòng Sau đại học</label>
+                        <% } %>    
+
+                        <% if(user.chuyenmuc.includes('Phòng điện toán và máy tính')){%>
+                            <label for="ĐTVMT">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng điện toán và máy tính" id="ĐTVMT" checked/> Phòng điện toán và máy tính</label>
+                        <% }else{ %>
+                            <label for="ĐTVMT">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng điện toán và máy tính" id="ĐTVMT"/> Phòng điện toán và máy tính</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Phòng khảo thí và kiểm định chất lượng')){%>
+                            <label for="KTVKĐCL">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng khảo thí và kiểm định chất lượng" id="KTVKĐCL" checked/> Phòng khảo thí và kiểm định chất lượng</label>
+                        <% }else{ %>
+                            <label for="KTVKĐCL">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng khảo thí và kiểm định chất lượng" id="KTVKĐCL" /> Phòng khảo thí và kiểm định chất lượng</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Phòng khảo thí và kiểm định chất lượng')){%>
+                            <label for="TC">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng tài chính" id="TC" checked/> Phòng tài chính</label>
+                        <% }else{ %>
+                            <label for="TC">
+                            <input type="checkbox" name="chuyenmuc" value="Phòng tài chính" id="TC" /> Phòng tài chính</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('TDT Creative Language Center')){%>
+                            <label for="TDTCLC">
+                            <input type="checkbox" name="chuyenmuc" value="TDT Creative Language Center" id="TDTCLC" checked/> TDT Creative Language Center</label>
+                        <% }else{ %>
+                            <label for="TDTCLC">
+                            <input type="checkbox" name="chuyenmuc" value="TDT Creative Language Center" id="TDTCLC" /> TDT Creative Language Center</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Trung tâm tin học')){%>    
+                            <label for="TTTH">
+                            <input type="checkbox" name="chuyenmuc" value="Trung tâm tin học" id="TTTH" checked/> Trung tâm tin học</label>
+                        <% }else{ %>
+                            <label for="TTTH">
+                            <input type="checkbox" name="chuyenmuc" value="Trung tâm tin học" id="TTTH" /> Trung tâm tin học</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Trung tâm đào tạo phát triển xã hội (SDTC)')){%>   
+                            <label for="SDTC">
+                            <input type="checkbox" name="chuyenmuc" value="Trung tâm đào tạo phát triển xã hội (SDTC)" id="SDTC" checked/> Trung tâm đào tạo phát triển xã hội (SDTC)</label>
+                        <% }else{ %>
+                            <label for="SDTC">
+                            <input type="checkbox" name="chuyenmuc" value="Trung tâm đào tạo phát triển xã hội (SDTC)" id="SDTC" /> Trung tâm đào tạo phát triển xã hội (SDTC)</label>
+                        <% } %>
+                        
+                        <% if(user.chuyenmuc.includes('Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)')){%>   
+                            <label for="ATEM">
+                            <input type="checkbox" name="chuyenmuc" value="Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)" id="ATEM" checked/> Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)</label>
+                        <% }else{ %>
+                            <label for="ATEM">
+                            <input type="checkbox" name="chuyenmuc" value="Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)" id="ATEM" /> Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)</label>
+                        <% } %>
+                        
+                        <% if(user.chuyenmuc.includes('Trung tâm hợp tác doanh nghiệp và cựu sinh viên')){%> 
+                            <label for="TTHTDNVCSV">
+                            <input type="checkbox" name="chuyenmuc" value="Trung tâm hợp tác doanh nghiệp và cựu sinh viên" id="TTHTDNVCSV" checked/> Trung tâm hợp tác doanh nghiệp và cựu sinh viên</label>
+                        <% }else{ %>
+                            <label for="TTHTDNVCSV">
+                            <input type="checkbox" name="chuyenmuc" value="Trung tâm hợp tác doanh nghiệp và cựu sinh viên" id="TTHTDNVCSV" /> Trung tâm hợp tác doanh nghiệp và cựu sinh viên</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa')){%> 
+                            <label for="TTNNTHVH">
+                            <input type="checkbox" name="chuyenmuc" value="Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa" id="TTNNTHVH" checked/> Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa</label>
+                        <% }else{ %>
+                            <label for="TTNNTHVH">
+                            <input type="checkbox" name="chuyenmuc" value="Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa" id="TTNNTHVH" /> Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Viện chính sách kinh tế và kinh doanh')){%> 
+                            <label for="VCSKTVKD">
+                            <input type="checkbox" name="chuyenmuc" value="Viện chính sách kinh tế và kinh doanh" id="VCSKTVKD" checked/> Viện chính sách kinh tế và kinh doanh</label>
+                        <% }else{ %>
+                             <label for="VCSKTVKD">
+                            <input type="checkbox" name="chuyenmuc" value="Viện chính sách kinh tế và kinh doanh" id="VCSKTVKD" /> Viện chính sách kinh tế và kinh doanh</label>
+                        <% } %>
+
+
+                        <% if(user.chuyenmuc.includes('Khoa Mỹ thuật công nghiệp')){%> 
+                            <label for="MTCN">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Mỹ thuật công nghiệp" id="MTCN" checked/> Khoa Mỹ thuật công nghiệp</label>
+                        <% }else{ %>
+                            <label for="MTCN">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Mỹ thuật công nghiệp" id="MTCN" /> Khoa Mỹ thuật công nghiệp</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Khoa Điện – Điện tử')){%> 
+                            <label for="DT">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Điện – Điện tử" id="DT" checked/> Khoa Điện – Điện tử</label>
+                        <% }else{ %>
+                            <label for="DT">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Điện – Điện tử" id="DT" /> Khoa Điện – Điện tử</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Khoa Công nghệ thông tin')){%> 
+                            <label for="CNTT">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Công nghệ thông tin" id="CNTT" checked/> Khoa Công nghệ thông tin</label>
+                        <% }else{ %>
+                            <label for="CNTT">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Công nghệ thông tin" id="CNTT"/> Khoa Công nghệ thông tin</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Khoa Quản trị kinh doanh')){%> 
+                            <label for="QTKD">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Quản trị kinh doanh" id="QTKD" checked/> Khoa Quản trị kinh doanh</label>
+                        <% }else{ %>
+                            <label for="QTKD">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Quản trị kinh doanh" id="QTKD" /> Khoa Quản trị kinh doanh</label>
+                        <% } %>
+                            
+                        <% if(user.chuyenmuc.includes('Khoa Luật')){%> 
+                            <label for="L">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Luật" id="L" checked/> Khoa Luật</label>
+                        <% }else{ %>
+                            <label for="L">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Luật" id="L" /> Khoa Luật</label>
+                         <% } %>
+
+                        <% if(user.chuyenmuc.includes('Khoa Lao động công đoàn')){%> 
+                            <label for="LDCD">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Lao động công đoàn" id="LDCD" checked/> Khoa Lao động công đoàn</label>
+                        <% }else{ %>
+                            <label for="LDCD">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Lao động công đoàn" id="LDCD" /> Khoa Lao động công đoàn</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Khoa Tài chính ngân hàng')){%> 
+                            <label for="TCNH">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Tài chính ngân hàng" id="TCNH" checked/> Khoa Tài chính ngân hàng</label>
+                        <% }else{ %>
+                            <label for="TCNH">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa Tài chính ngân hàng" id="TCNH" /> Khoa Tài chính ngân hàng</label>
+                        <% } %>
+
+                        <% if(user.chuyenmuc.includes('Khoa giáo dục quốc tế')){%> 
+                            <label for="GDQT">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa giáo dục quốc tế" id="GDQT" checked/> Khoa giáo dục quốc tế</label> 
+                        <% }else{ %>
+                            <label for="GDQT">
+                            <input type="checkbox" name="chuyenmuc" value="Khoa giáo dục quốc tế" id="GDQT" /> Khoa giáo dục quốc tế</label> 
+                        <% } %>
+                    </div>
+                </div>
+
+                    
+
+                <% if(locals.errorMessage){ %>
+                    <div class="alert alert-danger text-center">
+                        <%= errorMessage%>
+                    </div>
+                <% }else if(locals.successMessage){ %>
+                    <div class="alert alert-success text-center">
+                        <%= successMessage%>
+                    </div>
+                <% } %>
+
+                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Cập nhật</button></div>
+            </form>
+        </div>
+    </div>
+</div>

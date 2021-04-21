@@ -1,0 +1,34 @@
+<div class="form-group"><button class="btn btn-success btn-sm" type="submit" id="back"><a class="text-light" href="/quanly">Quay lại</a></button></div>
+<div class="container-fluid mb-2">
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Tạo thông báo mới</p>
+        </div>
+        <div class="card-body">
+            <form action="/quanly/taothongbao" method="post">
+                <div class="form-group"><label for="phong"></label><input class="d-none" type="text" name="phong" id="phong" value="<%=data.phong_khoa%>"></div>
+                <div class="form-group"><label for="tieude"><strong>Tiêu đề</strong></label><textarea class="form-control input-login" cols="4" type="text" name="tieude" id="tieude" placeholder="Tiêu đề của của thông báo"><%=tieude%></textarea></div>
+                <div class="form-group"><label for="noidung"><strong>Nội dung</strong></label><textarea class="form-control input-login" cols="4" type="text" name="noidung" id="noidung" placeholder="Nội dung của của thông báo"><%=noidung%></textarea></div>
+                <div class="form-group"><label for="chonchuyenmuc"><strong>Chuyên mục</strong></label>
+                    <select class="form-control" name="chonchuyenmuc" id="chonchuyenmuc">
+                    <%data.chuyenmuc.forEach(function(chuyenmuc) { %>
+                        <option value="<%=chuyenmuc%>"><%=chuyenmuc%></option>
+                    <% }) %>
+                    </select>
+                </div>
+                
+                <% if(locals.errorMessage){ %>
+                    <div class="alert alert-danger text-center">
+                        <%= errorMessage%>
+                    </div>
+                <% }else if(locals.successMessage){ %>
+                    <div class="alert alert-success text-center">
+                        <%= successMessage%>
+                    </div>
+                <% } %>
+                <div class="form-group"><button class="btn btn-primary btn-sm" onclick="guiThongBao()">Xác nhận đăng thông báo</button></div>
+            </form>
+            
+        </div>
+    </div>
+</div>

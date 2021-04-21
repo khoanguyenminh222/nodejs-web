@@ -1,0 +1,163 @@
+<div class="container-fluid mb-2">
+    <div class="card">
+        <div class="card-header shadow py-3 d-flex justify-content-center">
+            <img class="avatartrangcanhan" src="/uploads/anhdaidien/<%=nguoidung.image%>" alt="">
+        </div>
+        <div class="card-header py-3 d-flex justify-content-center">
+            <p class="display-4"><%=nguoidung.fullname%></p>
+        </div>  
+    </div>
+</div>
+
+<% allbaiviet.forEach(function(baiviet){ %>
+    <% if(baiviet.manguoidung==nguoidung._id) { %>
+        <div class="card cardbaiviet w-75 mx-auto mb-2">
+            <div class="card-header ">
+                <div class="d-flex justify-content-between align-items-center ">
+                    <div class="d-flex justify-content-between align-items-center ">
+                    <% allstudent.forEach(function(allstudent){  %>
+                    <% if(allstudent._id==baiviet.manguoidung){ %>
+                        <div class="mr-2 ">
+                            <a class="text-decoration-none text-dark" href="/trangnguoidung/<%= allstudent._id%>"><img class="rounded-circle avatar" src="/uploads/anhdaidien/<%= allstudent.image %>" alt=" "></a>
+                        </div>
+                        <div class="ml-2 ">
+                            <a class="text-decoration-none text-dark" href="/trangnguoidung/<%= allstudent._id%>"><div class="h5 m-0 "><%=allstudent.fullname%></div></a>
+                        </div>
+                    <% } %> 
+                    <% }) %>  
+                    <% allaccount.forEach(function(allaccount){  %>
+                    <% if(allaccount._id==baiviet.manguoidung){ %>
+                        <div class="mr-2 ">
+                            <img class="rounded-circle avatar" src="/images/TDT.jpg" alt=" ">
+                        </div>
+                        <div class="ml-2 ">
+                            <div class="h5 m-0 "><%=allaccount.phong_khoa%></div>
+                        </div>
+                    <% } %> 
+                    <% }) %> 
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card-body ">
+                <div class="text-muted h7 mb-2 "> <i class="fas fa-clock " aria-hidden="true "></i>Đã đăng: <%= baiviet.thoigianhienthi %></div>
+
+                <p class="card-text txttext">
+                    <%= baiviet.noidung %>
+                </p>
+                <% if(baiviet.video){ %>
+                <iframe class='iframe' width="100%" height="300" src="<%=baiviet.video%>"></iframe>
+                <% } %>
+                <div class='img-1'>
+                    <% baiviet.hinhanh.forEach(function(img) { %>
+                    <img src="/uploads/anhbaiviet/<%=img%>" alt="">
+                    <% }) %>
+                </div>
+            </div>
+
+            <div class="card-footer border-bottom bg-light">
+                <button class="btn btn-light fa fa-comment btncomment" data-manguoidung="<%=data._id%>" data-mabaiviet="<%=baiviet._id%>"> Bình luận</button>
+                <button class="btn btn-light fa fa-comment btn_ancomment" data-manguoidung="<%=data._id%>" data-mabaiviet="<%=baiviet._id%>">Ẩn bình luận</button>
+            </div>
+            
+            <!-- Bình luận và hiển thị bình luận-->
+            <div class="card-body comment" id="<%=baiviet._id%>" data-mabaiviet="<%=baiviet._id%>">
+                
+                <% allbinhluan.forEach(function(allbinhluan) { %>
+                <% if(allbinhluan.mabaiviet==baiviet._id) { %>
+                <% allstudent.forEach(function(allstudent){  %>
+                <% if(allbinhluan.manguoidung==allstudent._id) { %>
+                <div class="user-comment mb-3" id="<%=allbinhluan._id%>">
+                    <div class="d-flex mb-2 ">
+                        <div class="mr-2 ">
+                            <a class="text-decoration-none text-dark" href="/trangnguoidung/<%= allstudent._id%>"><img class="rounded-circle avatar" src="/uploads/anhdaidien/<%=allstudent.image%>" alt=" "></a>
+                        </div>
+                        <div class="ml-2 mt-1 ">
+                                <p>
+                                <a class="text-decoration-none text-dark" href="/trangnguoidung/<%= allstudent._id%>">
+                                    <b><%=allstudent.fullname%></b>
+                                </a>
+                                <span class="text-muted"><%=allbinhluan.thoigian%></span>
+                            </p>
+                            <% if(allbinhluan.manguoidung==data._id) { %>
+                            <p class='txttext'><%=allbinhluan.txtbinhluan%></p>
+                            <small><a class="text-danger text-decoration-none btnxoabinhluan" data-id="<%=allbinhluan._id%>" data-noidung="<%=allbinhluan.txtbinhluan%>" data-toggle="modal" data-target="#modalxoabinhluan">Xoá</a></small>
+                            <% }else{ %>
+                            <p class='txttext'><%=allbinhluan.txtbinhluan%></p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <% }) %>
+                <% allaccount.forEach(function(allaccount){  %>
+                <% if(allbinhluan.manguoidung==allaccount._id) { %>
+                <div class="user-comment mb-3" id="<%=allbinhluan._id%>">
+                    <div class="d-flex mb-2 ">
+                        <div class="mr-2 ">
+                            <img class="rounded-circle avatar" src="/images/TDT.jpg" alt=" ">
+                        </div>
+                        <div class="ml-2 mt-1 ">
+                                <p>
+                                <a class="text-decoration-none text-dark" href="">
+                                    <b><%=allaccount.phong_khoa%></b>
+                                </a>
+                                <span class="text-muted"><%=allbinhluan.thoigian%></span>
+                            </p>
+                            <% if(allbinhluan.manguoidung==data._id) { %>
+                            <p class='txttext'><%=allbinhluan.txtbinhluan%></p>
+                            <small><a class="text-danger text-decoration-none btnxoabinhluan" data-id="<%=allbinhluan._id%>" data-noidung="<%=allbinhluan.txtbinhluan%>" data-toggle="modal" data-target="#modalxoabinhluan">Xoá</a></small>
+                            <% }else{ %>
+                            <p class='txttext'><%=allbinhluan.txtbinhluan%></p>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+                <% }) %>
+
+                <% } %>
+                <% }) %>
+                <div class="user-comment mb-3 hienbinhluan<%=baiviet._id%>">
+
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="align-items-center">
+                        <img class="rounded-circle avatar" src="/images/TDT.jpg" alt=" ">
+                    </div>
+                    <textarea class="form-control input-login txtbinhluan" data-mabaiviet="<%=baiviet._id%>" cols="4" type="text " placeholder="Viết "></textarea>
+                    <button class='btn btn-primary btndangbinhluanquanly btn' data-manguoidung="<%=data._id%>" data-mabaiviet="<%=baiviet._id%>">Gửi</button>
+                </div>
+            </div>
+        </div>
+    <% } %>
+<% }) %>
+<button class='btn btn-danger mx-auto mb-5 loadmore'>Load more data</button>
+<p class="textloadmore"></p>
+
+
+
+<!-- modal xoá bình luận -->
+    <div class="modal" id="modalxoabinhluan">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div>
+                        <h4 class="modal-title">Xoá bình luận</h4>
+                    </div>
+                </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <p>Bình luận với nội dung <strong class="noidungbinhluan">a</strong></p>            
+                    <p>Bình luận sau khi xoá sẽ không thể khôi phục lại.</p>
+                </div>
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="btn btn-danger chapnhanxoabinhluan">Xoá</button>
+                    <button class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,207 @@
+
+
+<!-- Tạo tài khoản -->
+<div class="container-fluid mb-2">
+    <div class="card shadow">
+    <%if(locals.successMessage1){ %>
+                    <div class="alert alert-success text-center">
+                        <%= successMessage1%>
+                    </div>
+                <% } %>
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Thêm tài khoản phòng/khoa</p>
+        </div>
+        <div class="card-body">
+            <form id="form_taotaikhoan" method="post" action="/taotaikhoan/add">
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group"><label for="username"><strong>Username</strong></label><input class="form-control" type="text" id="username" placeholder="Nhập Username" name="username" /></div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group"><label for="password"><strong>Password</strong></label><input class="form-control" type="text" id="password" placeholder="Nhập Password" name="password" /></div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col">
+                        <div class="form-group"><label for="country"><strong>Chọn Phòng/khoa</strong></label>
+                            <select class="form-control" name="phong_khoa" id="phong_khoa">
+                                <optgroup label="Phòng">
+                                    <option value="Phòng Công tác học sinh sinh viên (CTHSSV)">Phòng Công tác học sinh sinh viên (CTHSSV)</option>
+                                    <option value="Phòng Đại học">Phòng Đại học</option>
+                                    <option value="Phòng Sau đại học">Phòng Sau đại học</option>
+                                    <option value="Phòng điện toán và máy tính">Phòng điện toán và máy tính</option>
+                                    <option value="Phòng khảo thí và kiểm định chất lượng">Phòng khảo thí và kiểm định chất lượng</option>
+                                    <option value="Phòng tài chính">Phòng tài chính</option>
+                                    <option value="TDT Creative Language Center">TDT Creative Language Center</option>
+                                    <option value="Trung tâm tin học">Trung tâm tin học</option>
+                                    <option value="Trung tâm đào tạo phát triển xã hội (SDTC)">Trung tâm đào tạo phát triển xã hội (SDTC)</option>
+                                    <option value="Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)">Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)</option>
+                                    <option value="Trung tâm hợp tác doanh nghiệp và cựu sinh viên">Trung tâm hợp tác doanh nghiệp và cựu sinh viên</option>
+                                    <option value="Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa">Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa</option>
+                                    <option value="Viện chính sách kinh tế và kinh doanh">Viện chính sách kinh tế và kinh doanh</option>
+                                </optgroup>
+                                <optgroup label="Khoa">
+                                    <option value="Khoa Mỹ thuật công nghiệp">Khoa Mỹ thuật công nghiệp </option>
+                                    <option value="Khoa Điện – Điện tử">Khoa Điện – Điện tử </option>
+                                    <option value="Khoa Công nghệ thông tin">Khoa Công nghệ thông tin </option>
+                                    <option value="Khoa Quản trị kinh doanh">Khoa Quản trị kinh doanh </option>
+                                    <option value="Khoa Luật">Khoa Luật </option>
+                                    <option value="Khoa Lao động công đoàn">Khoa Lao động công đoàn </option>
+                                    <option value="Khoa Tài chính ngân hàng">Khoa Tài chính ngân hàng </option>
+                                    <option value="Khoa giáo dục quốc tế">Khoa giáo dục quốc tế</option>
+                                </optgroup>
+                            </select>   
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group"><label for="country"><strong>Chọn chuyên mục đăng bài</strong></label>
+                            <div class="selectBox" onclick="showCheckboxes()">
+                            <select class="form-control">
+                                <option>Select an option</option>
+                            </select>
+                            <div class="overSelect"></div>
+                            </div>
+                            <div id="checkboxes">
+                                <label for="CTHSSV">
+                                    <input type="checkbox" name="chuyenmuc" value="Phòng Công tác học sinh sinh viên (CTHSSV)" id="CTHSSV" /> Phòng Công tác học sinh sinh viên (CTHSSV)</label>
+                                <label for="ĐH">
+                                    <input type="checkbox" name="chuyenmuc" value="Phòng Đại học" id="ĐH" /> Phòng Đại học</label>
+                                <label for="SĐH">
+                                    <input type="checkbox" name="chuyenmuc" value="Phòng Sau đại học" id="SĐH" /> Phòng Sau đại học</label>
+                                <label for="ĐTVMT">
+                                    <input type="checkbox" name="chuyenmuc" value="Phòng điện toán và máy tính" id="ĐTVMT" /> Phòng điện toán và máy tính</label>
+                                <label for="KTVKĐCL">
+                                    <input type="checkbox" name="chuyenmuc" value="Phòng khảo thí và kiểm định chất lượng" id="KTVKĐCL" /> Phòng khảo thí và kiểm định chất lượng</label>
+                                <label for="TC">
+                                    <input type="checkbox" name="chuyenmuc" value="Phòng tài chính" id="TC" /> Phòng tài chính</label>
+                                <label for="TDTCLC">
+                                    <input type="checkbox" name="chuyenmuc" value="TDT Creative Language Center" id="TDTCLC" /> TDT Creative Language Center</label>
+                                <label for="TTTH">
+                                    <input type="checkbox" name="chuyenmuc" value="Trung tâm tin học" id="TTTH" /> Trung tâm tin học</label>
+                                <label for="SDTC">
+                                    <input type="checkbox" name="chuyenmuc" value="Trung tâm đào tạo phát triển xã hội (SDTC)" id="SDTC" /> Trung tâm đào tạo phát triển xã hội (SDTC)</label>
+                                <label for="ATEM">
+                                    <input type="checkbox" name="chuyenmuc" value="Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)" id="ATEM" /> Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)</label>
+                                <label for="TTHTDNVCSV">
+                                    <input type="checkbox" name="chuyenmuc" value="Trung tâm hợp tác doanh nghiệp và cựu sinh viên" id="TTHTDNVCSV" /> Trung tâm hợp tác doanh nghiệp và cựu sinh viên</label>
+                                <label for="TTNNTHVH">
+                                    <input type="checkbox" name="chuyenmuc" value="Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa" id="TTNNTHVH" /> Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa</label>
+                                <label for="VCSKTVKD">
+                                    <input type="checkbox" name="chuyenmuc" value="Viện chính sách kinh tế và kinh doanh" id="VCSKTVKD" /> Viện chính sách kinh tế và kinh doanh</label>
+                                <label for="MTCN">
+                                    <input type="checkbox" name="chuyenmuc" value="Khoa Mỹ thuật công nghiệp" id="MTCN" /> Khoa Mỹ thuật công nghiệp</label>
+                                <label for="DT">
+                                    <input type="checkbox" name="chuyenmuc" value="Khoa Điện – Điện tử" id="DT" /> Khoa Điện – Điện tử</label>
+                                <label for="CNTT">
+                                    <input type="checkbox" name="chuyenmuc" value="Khoa Công nghệ thông tin" id="CNTT" /> Khoa Công nghệ thông tin</label>
+                                <label for="QTKD">
+                                    <input type="checkbox" name="chuyenmuc" value="Khoa Quản trị kinh doanh" id="QTKD" /> Khoa Quản trị kinh doanh</label>
+                                <label for="L">
+                                    <input type="checkbox" name="chuyenmuc" value="Khoa Luật" id="L" /> Khoa Luật</label>
+                                <label for="LDCD">
+                                    <input type="checkbox" name="chuyenmuc" value="Khoa Lao động công đoàn" id="LDCD" /> Khoa Lao động công đoàn</label>
+                                <label for="TCNH">
+                                    <input type="checkbox" name="chuyenmuc" value="Khoa Tài chính ngân hàng" id="TCNH" /> Khoa Tài chính ngân hàng</label>
+                                <label for="GDQT">
+                                    <input type="checkbox" name="chuyenmuc" value="Khoa giáo dục quốc tế" id="GDQT" /> Khoa giáo dục quốc tế</label> 
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <% if(locals.errorMessage){ %>
+                    <div class="alert alert-danger text-center">
+                        <%= errorMessage%>
+                    </div>
+                <% }else if(locals.successMessage){ %>
+                    <div class="alert alert-success text-center">
+                        <%= successMessage%>
+                    </div>
+                <% } %>
+                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Tạo tài khoản</button></div>
+            </form>
+        </div>
+    </div>
+</div>
+    <!-- Hiển thị thông tin  -->
+<div class="container-fluid mb-2">
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Thông tin tài khoản các phòng/khoa</p>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
+                <table class="table my-0" id="dataTable">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Username</th>
+                            <th>Phòng/Khoa</th>
+                            <th>Chuyên mục đăng bài</th>
+                            <th>Chỉnh sửa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(function(user, index){ %>
+                        <form method="get" data-id="<%= user._id %>" action="/taotaikhoan/edit/<%= user._id %>">
+                            <tr>
+                                <td><%=index+1%></td>
+                                <td><img class="rounded-circle mr-2 avatar" width="30" height="30" src="/images/TDT.jpg" /><%=user.username%></td>
+                                <td><%=user.phong_khoa%></td>
+                                <td id="chuyenmuc_<%=user._id%>" name="chuyenmuc"><%=user.chuyenmuc%></td>
+                                <td><button data-id="<%= user._id %>" data-name="<%= user.username %>" class="btn btn-primary btn-sm btn_edit" type="submit">Chỉnh sửa  </button></td>
+                            </tr>
+                        </form>
+                        
+                        <% }) %>
+                    </tbody>
+                    
+                </table>
+            </div>
+            <!-- Phân trang 
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Showing 1 to 10 of 27</p>
+                </div>
+                <div class="col-md-6">
+                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            -->
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="confirmDialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Chỉnh sửa chuyên mục</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                Chỉnh sửa chuyên mục đăng bài viết cho <strong class="username">ABC</strong>
+            </div>
+
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-confirm-edit" data-dismiss="modal">Cập nhật</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+            </div>
+
+        </div>
+    </div>
+</div>

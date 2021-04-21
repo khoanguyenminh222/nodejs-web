@@ -1,0 +1,136 @@
+<div class="container-fluid">
+        <div class="form-group"><a class="text-dark" href="/student">/student</a> <a class="text-dark" href="/student/xemthongbao">/Tất cả thông báo</a></div>
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Tất cả thông báo</p>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/student/xemthongbao">
+            <div class="form-row">
+                <div class="col">
+                    <select class="form-control" name="phong_khoa" id="phong_khoa">
+                        <optgroup label="Phòng">
+                            <option value="Phòng Công tác học sinh sinh viên (CTHSSV)">Phòng Công tác học sinh sinh viên (CTHSSV)</option>
+                            <option value="Phòng Đại học">Phòng Đại học</option>
+                            <option value="Phòng Sau đại học">Phòng Sau đại học</option>
+                            <option value="Phòng điện toán và máy tính">Phòng điện toán và máy tính</option>
+                            <option value="Phòng khảo thí và kiểm định chất lượng">Phòng khảo thí và kiểm định chất lượng</option>
+                            <option value="Phòng tài chính">Phòng tài chính</option>
+                            <option value="TDT Creative Language Center">TDT Creative Language Center</option>
+                            <option value="Trung tâm tin học">Trung tâm tin học</option>
+                            <option value="Trung tâm đào tạo phát triển xã hội (SDTC)">Trung tâm đào tạo phát triển xã hội (SDTC)</option>
+                            <option value="Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)">Trung tâm phát triển Khoa học quản lý và Ứng dụng công nghệ (ATEM)</option>
+                            <option value="Trung tâm hợp tác doanh nghiệp và cựu sinh viên">Trung tâm hợp tác doanh nghiệp và cựu sinh viên</option>
+                            <option value="Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa">Trung tâm ngoại ngữ - tin học – bồi dưỡng văn hóa</option>
+                            <option value="Viện chính sách kinh tế và kinh doanh">Viện chính sách kinh tế và kinh doanh</option>
+                        </optgroup>
+                        <optgroup label="Khoa">
+                            <option value="Khoa Mỹ thuật công nghiệp">Khoa Mỹ thuật công nghiệp </option>
+                            <option value="Khoa Điện – Điện tử">Khoa Điện – Điện tử </option>
+                            <option value="Khoa Công nghệ thông tin">Khoa Công nghệ thông tin </option>
+                            <option value="Khoa Quản trị kinh doanh">Khoa Quản trị kinh doanh </option>
+                            <option value="Khoa Luật">Khoa Luật </option>
+                            <option value="Khoa Lao động công đoàn">Khoa Lao động công đoàn </option>
+                            <option value="Khoa Tài chính ngân hàng">Khoa Tài chính ngân hàng </option>
+                            <option value="Khoa giáo dục quốc tế">Khoa giáo dục quốc tế</option>
+                        </optgroup>
+                    </select>   
+                </div>  
+                <div class="col">
+                    <div class="form-group"><button class="btn btn-primary btn-sm" type="submit"><a class="text-light">Tìm kiếm</a></button></div>
+                </div> 
+            </div>
+            </form>
+
+            <% thongbao.forEach(function(thongbao){  %>
+            <div class="card-body border-bottom border-primary" id="<%=thongbao._id%>">
+                <div class="row align-items-center no-gutters">
+                    <div class="col mr-2">
+                        <div class="text-uppercase text-primary font-weight-bold text-xs mb-1"><%=thongbao.tieude%></div>
+                        <div class="text-dark text-muted mb-0"><small><%=thongbao.thoigian%></small></div>
+                        <div class="text-dark text-muted mb-0"><small>Đăng bởi: <%=thongbao.phong_khoa%></small></div>
+                        <div class="text-dark text-muted mb-0"><small>Thuộc chuyên mục: <%=thongbao.chuyenmuc%></small></div>
+                        <div class="text-dark font-weight-bold h5 mb-0 noidungthongbao"><%=thongbao.noidung%></div>
+                        
+                    </div>
+                    <div class="col-auto"><a class="btn_chitietthongbao" href="/student/chitietthongbao/<%=thongbao._id%>"><i class="fas fa-arrow-right fa-2x text-info"></i></a></div>
+                </div>
+            </div>
+            <%})%>
+
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p id="dataTable_info" class="dataTables_info" role="status" aria-live="polite">Tổng: <%=pages%> trang</p>
+                </div>
+                <div class="col-md-6">
+                <% if(pages > 0) { %>
+                
+                    <nav class="d-lg-flex justify-content-lg-end dataTables_paginate paging_simple_numbers">
+                    <ul class="pagination" style="margin-top: 2rem;">
+                        
+                        <% if(current == 1) { %> 
+                            <li class="page-item disabled">
+                            <a class="page-link" href="/student/xemthongbao">First</a>
+                            </li>
+                        <% } else { %>
+                            <li class="page-item">
+                            <a class="page-link" href="/student/xemthongbao">First</a>
+                            </li>
+                        <% } %>
+                        
+                        <% var i = (Number(current) > 3 ? Number(current) - 2 : 1) %> 
+                        <% if(i !== 1) { %>
+                            <li class="page-item disabled">
+                            <a class="page-link" href="#">...</a>
+                            </li>
+                        <% } %>
+                        <% for(; i <= (Number(current) + 2) && i <= pages; i++) { %>
+
+                        <% if(i == current) { %>
+                            <li class="page-item active">
+                            <a class="page-link" href="/student/xemthongbao/<%= i %>">
+                                <%= i %>
+                            </a>
+                            </li>
+                        <% } else { %>
+                            <li class="page-item">
+                            <a class="page-link" href="/student/xemthongbao/<%= i %>">
+                                <%= i %>
+                            </a>
+                            </li>
+                        <% } %>
+                        <% if (i == Number(current) + 2 && i < pages) { %>
+                            <li class="page-item disabled">
+                            <a class="page-link" href="#">...</a>
+                            </li>
+                        <% } %>
+                        <% } %>
+                        
+                        <!-- LAST ITEM -->
+                        <% if(current == pages) { %> 
+
+                            <li class="page-item disabled">
+                            <a class="page-link" href="#">
+                                Last
+                            </a>
+                            </li>
+                        <% } else { %>
+
+                            <li class="page-item">
+                            <a class="page-link" href="/student/xemthongbao/<%= pages %>">
+                                Last
+                            </a>
+                            </li>
+                        <% } %>
+                    </ul>
+                    </nav>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

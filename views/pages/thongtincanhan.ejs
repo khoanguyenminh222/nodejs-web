@@ -1,0 +1,44 @@
+<div class="form-group"><button class="btn btn-success btn-sm" type="submit" id="back"><a class="text-light" href="/student">Quay lại</a></button></div>
+<div class="container-fluid mb-2">
+    <div class="card shadow">
+        <div class="card-header py-3">
+            <p class="text-primary m-0 font-weight-bold">Thay đổi thông tin</p>
+        </div>
+        <div class="card-body">
+            <form method="post" action="/student/thongtincanhan">
+                <div class="form-group"><label for="fullname"><strong>Tên hiển thị</strong></label><input class="form-control" type="text" id="fullname" name="fullname" placeholder="" value="<%= student.fullname %>" /></div>
+                <div class="form-group"><label for="lophoc"><strong>Lớp</strong></label><input class="form-control" type="text"  name="lophoc" placeholder="" value="<%= student.class %>" /></div>
+                <div class="form-group"><label for="faculty"><strong>Khoa</strong></label><input class="form-control" type="text"  name="faculty" placeholder="" value="<%= student.faculty %>" /></div>
+                
+
+
+                <% if(locals.errorMessage){ %>
+                    <div class="alert alert-danger text-center">
+                        <%= errorMessage%>
+                    </div>
+                <% }else if(locals.successMessage){ %>
+                    <div class="alert alert-success text-center">
+                        <%= successMessage%>
+                    </div>
+                <% } %>
+                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Cập nhật thông tin</button></div>
+            </form>
+            <form method="post" action="/student/thongtincanhan/anhdaidien" enctype="multipart/form-data">
+                <img id="anhdaidien" class="anhthongtincanhan" alt="your image" src="/uploads/anhdaidien/<%= student.image %>"/><br><br>
+                <div class="form-group"><label for="hinhanh" class="fa fa-image labletaianh text-warning">Ảnh đại diện</label>
+                    <input type="file" name="hinhanh" id="hinhanh" class="hinhanh d-none" multiple="multiple" accept="image/*" onchange="document.getElementById('anhdaidien').src = window.URL.createObjectURL(this.files[0])"></div>
+                
+                <% if(locals.errorMessage1){ %>
+                    <div class="alert alert-danger text-center">
+                        <%= errorMessage1%>
+                    </div>
+                <% }else if(locals.successMessage1){ %>
+                    <div class="alert alert-success text-center">
+                        <%= successMessage1%>
+                    </div>
+                <% } %>
+                <div class="form-group"><button class="btn btn-primary btn-sm" type="submit">Cập nhật ảnh đại diện</button></div>
+            </form>
+        </div>
+    </div>
+</div>
