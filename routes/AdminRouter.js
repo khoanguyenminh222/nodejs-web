@@ -40,7 +40,7 @@ Router.get('/', isLoggedIn, checkAdmin, (req, res, next) => {
     Promise.all([Student.find({}), BaiViet.find({}).sort({ thoigian: -1 }), BinhLuan.find({}).sort({ thoigian: 1 }), Account.find({})])
         .then(result => {
             const [allstudent, allbaiviet, allbinhluan, allaccount] = result
-            res.render('trangchuAdmin', { page: 'baivietadmin', student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, data: data })
+            res.render('trangchuAdmin', { page: 'baivietadmin', student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, data: data, title: 'Trang chủ' })
         })
 })
 Router.get('/dangxuat', (req, res) => {
@@ -54,10 +54,10 @@ Router.get('/taotaikhoan', isLoggedIn, checkAdmin, (req, res) => {
     data = req.session.data
     Account.find({ chucvu: { $eq: "Quanly" } }, (err, user) => {
         if (err) {
-            res.render('trangchuAdmin', { page: 'taotaikhoan', data: data, users: [] })
+            res.render('trangchuAdmin', { page: 'taotaikhoan', data: data, users: [], title: 'Tạo tài khoản' })
         } else {
             req.session.user = user
-            res.render('trangchuAdmin', { page: 'taotaikhoan', data: data, users: user })
+            res.render('trangchuAdmin', { page: 'taotaikhoan', data: data, users: user, title: 'Tạo tài khoản' })
         }
     })
 })
@@ -98,14 +98,14 @@ Router.post('/taotaikhoan/add', isLoggedIn, registerValidator, (req, res) => {
             })
             .then(() => {
                 successMessage = "Tạo tài khoản thành công. Cần load lại trang"
-                return res.render('trangchuAdmin', { page: 'taotaikhoan', successMessage, successMessage1: '', data: req.session.data, users: req.session.user })
+                return res.render('trangchuAdmin', { page: 'taotaikhoan', successMessage, successMessage1: '', data: req.session.data, users: req.session.user, title: 'Tạo tài khoản' })
 
 
             })
             .catch(e => {
                 errorMessage = e.message
 
-                return res.render('trangchuAdmin', { page: 'taotaikhoan', errorMessage, data: req.session.data, users: req.session.user })
+                return res.render('trangchuAdmin', { page: 'taotaikhoan', errorMessage, data: req.session.data, users: req.session.user, title: 'Tạo tài khoản' })
                     //return errorMessage
             })
 
@@ -119,7 +119,7 @@ Router.post('/taotaikhoan/add', isLoggedIn, registerValidator, (req, res) => {
         errorMessage = message
 
 
-        return res.render('trangchuAdmin', { page: 'taotaikhoan', errorMessage, data: req.session.data, users: req.session.user })
+        return res.render('trangchuAdmin', { page: 'taotaikhoan', errorMessage, data: req.session.data, users: req.session.user, title: 'Tạo tài khoản' })
             //return errorMessage
     }
 
@@ -130,9 +130,9 @@ Router.get('/taotaikhoan/edit/:id', isLoggedIn, checkAdmin, (req, res) => {
     Account.findOne({ _id: req.params.id }, (err, user) => {
         req.session.chinhsuauser = user
         if (err) {
-            res.render('trangchuAdmin', { page: 'chinhsuachuyenmuc', data: req.session.data, user: [] })
+            res.render('trangchuAdmin', { page: 'chinhsuachuyenmuc', data: req.session.data, user: [], title: 'Chỉnh sửa chuyên mục' })
         } else {
-            res.render('trangchuAdmin', { page: 'chinhsuachuyenmuc', data: req.session.data, user: user })
+            res.render('trangchuAdmin', { page: 'chinhsuachuyenmuc', data: req.session.data, user: user, title: 'Chỉnh sửa chuyên mục' })
         }
     })
 })
@@ -140,13 +140,13 @@ Router.get('/taotaikhoan/edit/:id', isLoggedIn, checkAdmin, (req, res) => {
 Router.post('/taotaikhoan/edit/:id', isLoggedIn, checkAdmin, (req, res) => {
     id = req.params.id
     if (!req.body.chuyenmuc) {
-        res.render('trangchuAdmin', { page: 'chinhsuachuyenmuc', errorMessage: "Cần tối thiểu 1 chuyên mục", data: req.session.data, user: req.session.chinhsuauser })
+        res.render('trangchuAdmin', { page: 'chinhsuachuyenmuc', errorMessage: "Cần tối thiểu 1 chuyên mục", data: req.session.data, user: req.session.chinhsuauser, title: 'Chỉnh sửa chuyên mục' })
     } else {
         Account.updateOne({ _id: id }, { $set: { chuyenmuc: req.body.chuyenmuc } }, function(err, user) {
             if (err) {
                 throw err
             } else {
-                res.render('trangchuAdmin', { page: 'chinhsuachuyenmuc', successMessage: "Cập nhật thành công", data: req.session.data, user: req.session.chinhsuauser })
+                res.render('trangchuAdmin', { page: 'chinhsuachuyenmuc', successMessage: "Cập nhật thành công", data: req.session.data, user: req.session.chinhsuauser, title: 'Chỉnh sửa chuyên mục' })
             }
 
 
@@ -160,7 +160,7 @@ Router.get('/trangnguoidung/:id', isLoggedIn, checkAdmin, (req, res) => {
     Promise.all([Student.find({}), Student.findById(id), BaiViet.find({}).sort({ thoigian: -1 }), BinhLuan.find({}).sort({ thoigian: 1 }), Account.find({})])
         .then(result => {
             const [allstudent, nguoidung, allbaiviet, allbinhluan, allaccount] = result
-            res.render('trangchuAdmin', { page: 'trangnguoidung_admin', nguoidung: nguoidung, student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, data: data })
+            res.render('trangchuAdmin', { page: 'trangnguoidung_admin', nguoidung: nguoidung, student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, data: data, title: nguoidung.fullname })
         })
 })
 

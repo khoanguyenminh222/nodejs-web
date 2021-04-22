@@ -50,7 +50,7 @@ Router.get('/', isLoggedIn, (req, res) => {
     Promise.all([Student.find({}), BaiViet.find({}).sort({ thoigian: -1 }), BinhLuan.find({}).sort({ thoigian: 1 }), Account.find({}), ThongBao.find({}).sort({ thoigian: -1 }).limit(5)])
         .then(result => {
             const [allstudent, allbaiviet, allbinhluan, allaccount, allthongbao] = result
-            res.render('student', { page: 'baivietnguoidung', student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao })
+            res.render('student', { page: 'baivietnguoidung', student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao, title: 'Trang chủ' })
         })
 })
 
@@ -100,23 +100,23 @@ Router.get('/thongtincanhan', isLoggedIn, (req, res) => {
     Student.findOne({ "email": email }, (err, data) => {
         if (err) {
             console.log(err)
-            res.render('student', { page: 'thongtincanhan', student: [] })
+            res.render('student', { page: 'thongtincanhan', student: [], title: 'Thông tin cá nhân' })
         } else {
 
-            res.render('student', { page: 'thongtincanhan', student: data })
+            res.render('student', { page: 'thongtincanhan', student: data, title: 'Thông tin cá nhân' })
         }
     })
 })
 Router.post('/thongtincanhan', isLoggedIn, (req, res) => {
     let { fullname, lophoc, faculty } = req.body
     if (!fullname) {
-        res.render('student', { page: 'thongtincanhan', errorMessage: 'Tên hiển thị không được để trống', student: req.session.student })
+        res.render('student', { page: 'thongtincanhan', errorMessage: 'Tên hiển thị không được để trống', student: req.session.student, title: 'Thông tin cá nhân' })
     } else if (fullname.length < 6) {
-        res.render('student', { page: 'thongtincanhan', errorMessage: 'Tên hiển thị phải tối thiểu 6 ký tự', student: req.session.student })
+        res.render('student', { page: 'thongtincanhan', errorMessage: 'Tên hiển thị phải tối thiểu 6 ký tự', student: req.session.student, title: 'Thông tin cá nhân' })
     } else if (!lophoc) {
-        res.render('student', { page: 'thongtincanhan', errorMessage: 'Lớp học không được để trống', student: req.session.student })
+        res.render('student', { page: 'thongtincanhan', errorMessage: 'Lớp học không được để trống', student: req.session.student, title: 'Thông tin cá nhân' })
     } else if (!faculty) {
-        res.render('student', { page: 'thongtincanhan', errorMessage: 'Khoa không được để trống', student: req.session.student })
+        res.render('student', { page: 'thongtincanhan', errorMessage: 'Khoa không được để trống', student: req.session.student, title: 'Thông tin cá nhân' })
     } else {
         Student.findOne({ "email": req.session.student.email }, (err, user) => {
 
@@ -137,9 +137,9 @@ Router.post('/thongtincanhan/anhdaidien', isLoggedIn, (req, res) => {
         let { fullname, lophoc, faculty } = req.body
         let hinhanh = req.file
         if (err) {
-            res.render('student', { page: 'thongtincanhan', errorMessage1: 'Kích thước ảnh quá lớn', student: req.session.student })
+            res.render('student', { page: 'thongtincanhan', errorMessage1: 'Kích thước ảnh quá lớn', student: req.session.student, title: 'Thông tin cá nhân' })
         } else if (!hinhanh) {
-            res.render('student', { page: 'thongtincanhan', errorMessage1: 'Chưa có hình ảnh', student: req.session.student })
+            res.render('student', { page: 'thongtincanhan', errorMessage1: 'Chưa có hình ảnh', student: req.session.student, title: 'Thông tin cá nhân' })
         } else {
             res.set('Content-Type', 'text/html')
             Student.findOne({ "email": req.session.student.email }, (err, user) => {
@@ -584,7 +584,7 @@ Router.get('/xemthongbao', isLoggedIn, (req, res) => {
                 if (err) {
                     console.log(err)
                 } else {
-                    res.render('student', { page: 'xemthongbao', student: req.session.student, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage) })
+                    res.render('student', { page: 'xemthongbao', student: req.session.student, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage), title: 'Thông báo' })
                 }
             })
         }
@@ -603,7 +603,7 @@ Router.get('/xemthongbao/:page', isLoggedIn, (req, res) => {
                 if (err) {
                     console.log(err)
                 } else {
-                    res.render('student', { page: 'xemthongbao', student: req.session.student, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage) })
+                    res.render('student', { page: 'xemthongbao', student: req.session.student, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage), title: 'Thông báo' })
                 }
             })
         }
@@ -623,7 +623,7 @@ Router.get('/xemthongbao/:phong_khoa/:page', isLoggedIn, (req, res) => {
                 if (err) {
                     console.log(err)
                 } else {
-                    res.render('student', { page: 'xemthongbaotheophongkhoa', student: req.session.student, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage) })
+                    res.render('student', { page: 'xemthongbaotheophongkhoa', student: req.session.student, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage), title: 'Thông báo' })
                 }
             })
         }
@@ -642,7 +642,7 @@ Router.post('/xemthongbao', isLoggedIn, (req, res) => {
                 if (err) {
                     console.log(err)
                 } else {
-                    res.render('student', { page: 'xemthongbaotheophongkhoa', phong_khoa, student: req.session.student, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage) })
+                    res.render('student', { page: 'xemthongbaotheophongkhoa', phong_khoa, student: req.session.student, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage), title: 'Thông báo' })
                 }
             })
         }
@@ -656,7 +656,7 @@ Router.get('/chitietthongbao/:id', isLoggedIn, (req, res) => {
         if (err) {
             console.log(err)
         } else {
-            res.render('student', { page: 'chitietthongbao', student: req.session.student, thongbao: thongbao })
+            res.render('student', { page: 'chitietthongbao', student: req.session.student, thongbao: thongbao, title: 'Chi tiết thông báo' })
         }
     })
 })
@@ -665,7 +665,7 @@ Router.get('/trangcanhan', isLoggedIn, (req, res) => {
     Promise.all([Student.find({}), BaiViet.find({}).sort({ thoigian: -1 }), BinhLuan.find({}).sort({ thoigian: 1 }), Account.find({}), ThongBao.find({}).sort({ thoigian: -1 }).limit(5)])
         .then(result => {
             const [allstudent, allbaiviet, allbinhluan, allaccount, allthongbao] = result
-            res.render('student', { page: 'trangcanhan', student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao })
+            res.render('student', { page: 'trangcanhan', student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao, title: 'Trang cá nhân' })
         })
 })
 
@@ -674,7 +674,7 @@ Router.get('/trangnguoidung/:id', isLoggedIn, (req, res) => {
     Promise.all([Student.find({}), Student.findById(id), BaiViet.find({}).sort({ thoigian: -1 }), BinhLuan.find({}).sort({ thoigian: 1 }), Account.find({}), ThongBao.find({}).sort({ thoigian: -1 }).limit(5)])
         .then(result => {
             const [allstudent, nguoidung, allbaiviet, allbinhluan, allaccount, allthongbao] = result
-            res.render('student', { page: 'trangnguoidung', nguoidung: nguoidung, student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao })
+            res.render('student', { page: 'trangnguoidung', nguoidung: nguoidung, student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao, title: nguoidung.fullname })
         })
 })
 

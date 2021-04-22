@@ -37,13 +37,13 @@ Router.get('/', isLoggedIn, checkQuanLy, (req, res) => {
     data = req.session.data
     Account.find({ chucvu: { $eq: "Quanly" } }, (err, user) => {
         if (err) {
-            res.render('quanly', { page: 'baivietquanly', data: data, users: [] })
+            res.render('quanly', { page: 'baivietquanly', data: data, users: [], title: 'Trang chủ' })
         } else {
             req.session.user = user
             Promise.all([Student.find({}), BaiViet.find({}).sort({ thoigian: -1 }), BinhLuan.find({}).sort({ thoigian: 1 }), Account.find({}), ThongBao.find({ phong_khoa: data.phong_khoa }).sort({ thoigian: -1 }).limit(5)])
                 .then(result => {
                     const [allstudent, allbaiviet, allbinhluan, allaccount, allthongbao] = result
-                    res.render('quanly', { page: 'baivietquanly', student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao, users: user, data: data })
+                    res.render('quanly', { page: 'baivietquanly', student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao, users: user, data: data, title: 'Trang chủ' })
                 })
         }
     })
@@ -52,15 +52,15 @@ Router.get('/', isLoggedIn, checkQuanLy, (req, res) => {
 
 Router.get('/doimatkhau', isLoggedIn, checkQuanLy, (req, res) => {
     data = req.session.data
-    res.render('quanly', { page: 'doimatkhau', data: data })
+    res.render('quanly', { page: 'doimatkhau', data: data, title: 'Đổi mật khẩu' })
 })
 Router.post('/doimatkhau', isLoggedIn, checkQuanLy, (req, res) => {
     let { password, password_moi } = req.body
     data = req.session.data
     if (!password) {
-        return res.render('quanly', { page: 'doimatkhau', errorMessage: 'Yêu cầu nhập mật khẩu xác nhận', data: req.session.data })
+        return res.render('quanly', { page: 'doimatkhau', errorMessage: 'Yêu cầu nhập mật khẩu xác nhận', data: req.session.data, title: 'Đổi mật khẩu' })
     } else if (password_moi.length < 6) {
-        return res.render('quanly', { page: 'doimatkhau', errorMessage: 'Mật khẩu mới phải tối thiểu 6 kí tự', data: req.session.data })
+        return res.render('quanly', { page: 'doimatkhau', errorMessage: 'Mật khẩu mới phải tối thiểu 6 kí tự', data: req.session.data, title: 'Đổi mật khẩu' })
     } else {
         Account.findOne({ username: data.username })
             .then(acc => {
@@ -78,12 +78,12 @@ Router.post('/doimatkhau', isLoggedIn, checkQuanLy, (req, res) => {
                     if (err) {
                         throw err
                     } else {
-                        return res.render('quanly', { page: 'doimatkhau', successMessage: 'Cập nhật thành công', data: req.session.data })
+                        return res.render('quanly', { page: 'doimatkhau', successMessage: 'Cập nhật thành công', data: req.session.data, title: 'Đổi mật khẩu' })
                     }
                 })
             })
             .catch(e => {
-                return res.render('quanly', { page: 'doimatkhau', errorMessage: e.message, data: req.session.data })
+                return res.render('quanly', { page: 'doimatkhau', errorMessage: e.message, data: req.session.data, title: 'Đổi mật khẩu' })
             })
     }
 
@@ -140,7 +140,7 @@ Router.post('/dangbinhluan', (req, res) => {
 
 Router.get('/taothongbao', isLoggedIn, checkQuanLy, (req, res) => {
     data = req.session.data
-    res.render('quanly', { page: 'taothongbao', data: data, tieude: '', noidung: '' })
+    res.render('quanly', { page: 'taothongbao', data: data, tieude: '', noidung: '', title: 'Tạo thông báo' })
 })
 
 Router.post('/taothongbao', isLoggedIn, checkQuanLy, (req, res) => {
@@ -150,11 +150,11 @@ Router.post('/taothongbao', isLoggedIn, checkQuanLy, (req, res) => {
     data = req.session.data
     let { tieude, noidung, chonchuyenmuc } = req.body
     if (!tieude) {
-        res.render('quanly', { page: 'taothongbao', data: data, errorMessage: 'Chưa có tiêu đề', tieude, noidung })
+        res.render('quanly', { page: 'taothongbao', data: data, errorMessage: 'Chưa có tiêu đề', tieude, noidung, title: 'Tạo thông báo' })
     } else if (!noidung) {
-        res.render('quanly', { page: 'taothongbao', data: data, errorMessage: 'Chưa có nội dung', tieude, noidung })
+        res.render('quanly', { page: 'taothongbao', data: data, errorMessage: 'Chưa có nội dung', tieude, noidung, title: 'Tạo thông báo' })
     } else if (!chonchuyenmuc) {
-        res.render('quanly', { page: 'taothongbao', data: data, errorMessage: "Chưa chọn chuyên mục", tieude, noidung })
+        res.render('quanly', { page: 'taothongbao', data: data, errorMessage: "Chưa chọn chuyên mục", tieude, noidung, title: 'Tạo thông báo' })
     } else {
         let thongbao = new ThongBao({
             tieude: tieude,
@@ -164,7 +164,7 @@ Router.post('/taothongbao', isLoggedIn, checkQuanLy, (req, res) => {
             thoigian: today
         })
         thongbao.save()
-        res.render('quanly', { page: 'taothongbao', data: data, successMessage: "Đã tạo thông báo mới thành công", tieude: '', noidung: '' })
+        res.render('quanly', { page: 'taothongbao', data: data, successMessage: "Đã tạo thông báo mới thành công", tieude: '', noidung: '', title: 'Tạo thông báo' })
     }
 })
 
@@ -181,7 +181,7 @@ Router.get('/thongbaocuatoi', isLoggedIn, checkQuanLy, (req, res) => {
                 if (err) {
                     console.log(err)
                 } else {
-                    res.render('quanly', { page: 'thongbaocuatoi', data: data, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage) })
+                    res.render('quanly', { page: 'thongbaocuatoi', data: data, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage), title: 'Thông báo' })
                 }
             })
         }
@@ -201,7 +201,7 @@ Router.get('/thongbaocuatoi/:page', isLoggedIn, checkQuanLy, (req, res) => {
                 if (err) {
                     console.log(err)
                 } else {
-                    res.render('quanly', { page: 'thongbaocuatoi', data: data, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage) })
+                    res.render('quanly', { page: 'thongbaocuatoi', data: data, thongbao: thongbao, current: page, pages: Math.ceil(count / perPage), title: 'Thông báo' })
                 }
             })
         }
@@ -214,7 +214,7 @@ Router.get('/chitietthongbao/:id', isLoggedIn, checkQuanLy, (req, res) => {
         if (err) {
             console.log(err)
         } else {
-            res.render('quanly', { page: 'chitietthongbaocuaquanly', data: data, thongbao: thongbao })
+            res.render('quanly', { page: 'chitietthongbaocuaquanly', data: data, thongbao: thongbao, title: 'Chi tiết thông báo' })
         }
     })
 })
@@ -289,7 +289,7 @@ Router.get('/trangnguoidung/:id', isLoggedIn, checkQuanLy, (req, res) => {
     Promise.all([Student.find({}), Student.findById(id), BaiViet.find({}).sort({ thoigian: -1 }), BinhLuan.find({}).sort({ thoigian: 1 }), Account.find({}), ThongBao.find({}).sort({ thoigian: -1 }).limit(5)])
         .then(result => {
             const [allstudent, nguoidung, allbaiviet, allbinhluan, allaccount, allthongbao] = result
-            res.render('quanly', { page: 'trangnguoidung_quanly', nguoidung: nguoidung, student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao, data: data })
+            res.render('quanly', { page: 'trangnguoidung_quanly', nguoidung: nguoidung, student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao, data: data, title: nguoidung.fullname })
         })
 })
 
