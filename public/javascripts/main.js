@@ -228,6 +228,7 @@ $('.btnchinhsuabaiviet').click(e => {
     $('#modalchinhsuabaiviet .divvideo').html('')
     $('#modalchinhsuabaiviet .linkyoutube').val('')
     $('#anhmoicuabaiviet').attr('src', '#')
+    $('#modalchinhsuabaiviet .chapnhanchinhsuabaiviet').attr('data-video', '')
 
     let txtnoidung = $(e.target).data('txtnoidung')
     let id = $(e.target).data('id')
