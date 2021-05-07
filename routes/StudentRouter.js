@@ -165,8 +165,8 @@ Router.post('/dangtin', (req, res) => {
         fields.push([noidung], [fullname], [masinhvien], [anhdaidien], [urlyoutube])
     })
 
-    moment().format('DD-MM-YYYY');
-    const today1 = moment().tz('Asia/Ho_Chi_Minh').format('DD-MM-YYYY HH:mm:ss');
+    moment().format('YYYY-MM-DD');
+    const today1 = moment().tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD HH:mm:ss');
 
 
     // Luu hinh anh 
