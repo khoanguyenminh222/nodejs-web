@@ -93,8 +93,7 @@ Router.post('/doimatkhau', isLoggedIn, checkQuanLy, (req, res) => {
 Router.post('/dangbinhluan', (req, res) => {
     var form = new formidable.IncomingForm();
 
-    moment().format('DD-MM-YYYY');
-    const today = moment().tz('Asia/Ho_Chi_Minh').format('DD-MM-YYYY HH:mm:ss');
+    const today = moment().tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD HH:mm:ss');
 
     var fields = []
     form.parse(req, function(err, field, files) {
@@ -144,8 +143,8 @@ Router.get('/taothongbao', isLoggedIn, checkQuanLy, (req, res) => {
 })
 
 Router.post('/taothongbao', isLoggedIn, checkQuanLy, (req, res) => {
-    moment().format('DD-MM-YYYY');
-    const today = moment().tz('Asia/Ho_Chi_Minh').format('DD-MM-YYYY HH:mm:ss');
+
+    const today = moment().tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD HH:mm:ss');
 
     data = req.session.data
     let { tieude, noidung, chonchuyenmuc } = req.body

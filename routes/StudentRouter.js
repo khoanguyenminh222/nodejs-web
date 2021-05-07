@@ -495,8 +495,7 @@ Router.post('/koanhcuchinhsuabaivietkhongcoanhmoi', (req, res) => {
 Router.post('/dangbinhluan', (req, res) => {
     var form = new formidable.IncomingForm();
 
-    moment().format('DD-MM-YYYY');
-    const today = moment().tz('Asia/Ho_Chi_Minh').format('DD-MM-YYYY HH:mm:ss');
+    const today = moment().tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD HH:mm:ss');
 
     var fields = []
     form.parse(req, function(err, field, files) {
