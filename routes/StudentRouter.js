@@ -47,7 +47,7 @@ const isLoggedIn = (req, res, next) => {
 }
 
 Router.get('/', isLoggedIn, (req, res) => {
-    Promise.all([Student.find({}), BaiViet.find({}).sort({ thoigian: -1 }), BinhLuan.find({}).sort({ thoigian: 1 }), Account.find({}), ThongBao.find({}).sort({ thoigian: -1 }).limit(5)])
+    Promise.all([Student.find({}), BaiViet.find({}), BinhLuan.find({}).sort({ thoigian: 1 }), Account.find({}), ThongBao.find({}).sort({ thoigian: -1 }).limit(5)])
         .then(result => {
             const [allstudent, allbaiviet, allbinhluan, allaccount, allthongbao] = result
             res.render('student', { page: 'baivietnguoidung', student: req.session.student, allbaiviet: allbaiviet, allstudent: allstudent, allbinhluan: allbinhluan, allaccount: allaccount, allthongbao: allthongbao, title: 'Trang chủ' })
