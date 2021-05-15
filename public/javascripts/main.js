@@ -1,4 +1,24 @@
 $('.cardbaiviet').slice(0, 10).show()
+var loading = false;
+var endpage = false;
+$(window).scroll(function() {
+
+    if (!loading && ($(window).scrollTop() > $(document).height() - $(window).height() - 5)) {
+        loading = true;
+        console.log("load");
+        $('.cardbaiviet:hidden').slice(0, 10).show()
+
+        if ($('.cardbaiviet:hidden').length == 0 && !endpage) {
+            $('.loadmore').fadeOut()
+            $('.textloadmore').append('Không còn dữ liệu bài viết')
+            endpage = true;
+        }
+
+        loading = false; // reset value of loading once content loaded
+    }
+});
+
+
 $('.loadmore').on('click', function() {
     $('.cardbaiviet:hidden').slice(0, 10).show()
 
